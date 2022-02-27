@@ -100,40 +100,59 @@
   - 为什么要写构造器？
     - 在构造器里初始化状态
     - 解决this的指向问题
-  - 018 state 的简写方式
-    - 怎么在不写constructor的情况下，追加新的变量呢？
-  - 019 总结state
-    - stated 的值是对象（k:v)的组合
-    - 组件通过state的改变来重新渲染，render页面
-    - 组件render()中的this是组件示例对象
-    - 自定义方法的this是undefined
-    - 状态数据不能直接修改，必须用setState()去修改
-  - 020 props
-    - React 自带的一个重要属性，通过标签属性发方式传入
-  - 021 批量传递props
-    - 使用{...p} 放进组件标签来传递
-    - ...运算符的复习，ES6 reduce的用法
-    - 组件里的{...p} 和js里的{...p}不是一个意思。...是不能打开对象的，js里加{}就可以复制这个对象，而组件里的{...p}是通过babel和React来重新解读的，仅仅用于标签属性的传递。不能用在其他地方。比如在组件里console.log()是打印不出来东西的。
-    - js的{...p,name:'jack}还有更新合并的功能
-  - 022 对于props的类型限制
-    - 某一prop的制定默认值
-    - 对于某一prop只允许特定的type，比如Number
-    - 必须要求某一prop有传入值
-    - 对传入函数的限制
-      - 在React15及以前，使用React.PropTypes
-      - 在React16以后，这个module被分离出来了，就是prop-tyoes.js 要导入后直接使用PropTypes
-  - 023 props的简写方式
-    - props是只读的
-    - 使用 static， 是变量成为class 变量，而非实例变量
-  - 024 类式组件中的构造器与props
-    - 构造器中的props传给和不传给super()有什么区别吗？
-    - 类中的构造器到底有什么作用呢？
-    - 如果需要写构造器，那么就要一定接和传props
-  - 025 函数组件使用props
-    - 类式组件的state和refs不能用在function组件里，但是props可以
-  - 026 props总结 明天看
-  - 027 字符串形式的ref
-    - ref收集的不是虚拟dom，而是真实DOM
-    - 官方已经不推荐使用
-  - 028 回调形式的ref
-    - 在ref里写一个回调函数
+- 018 state 的简写方式
+  - 怎么在不写constructor的情况下，追加新的变量呢？
+- 019 总结state
+  - stated 的值是对象（k:v)的组合
+  - 组件通过state的改变来重新渲染，render页面
+  - 组件render()中的this是组件示例对象
+  - 自定义方法的this是undefined
+  - 状态数据不能直接修改，必须用setState()去修改
+- 020 props
+  - React 自带的一个重要属性，通过标签属性发方式传入
+- 021 批量传递props
+  - 使用{...p} 放进组件标签来传递
+  - ...运算符的复习，ES6 reduce的用法
+  - 组件里的{...p} 和js里的{...p}不是一个意思。...是不能打开对象的，js里加{}就可以复制这个对象，而组件里的{...p}是通过babel和React来重新解读的，仅仅用于标签属性的传递。不能用在其他地方。比如在组件里console.log()是打印不出来东西的。
+  - js的{...p,name:'jack}还有更新合并的功能
+- 022 对于props的类型限制
+  - 某一prop的制定默认值
+  - 对于某一prop只允许特定的type，比如Number
+  - 必须要求某一prop有传入值
+  - 对传入函数的限制
+    - 在React15及以前，使用React.PropTypes
+    - 在React16以后，这个module被分离出来了，就是prop-tyoes.js 要导入后直接使用PropTypes
+- 023 props的简写方式
+  - props是只读的
+  - 使用 static， 是变量成为class 变量，而非实例变量
+- 024 类式组件中的构造器与props
+  - 构造器中的props传给和不传给super()有什么区别吗？
+  - 类中的构造器到底有什么作用呢？
+  - 如果需要写构造器，那么就要一定接和传props
+- 025 函数组件使用props
+  - 类式组件的state和refs不能用在function组件里，但是props可以
+- 026 props总结 明天看
+- 027 字符串形式的ref
+  - 打标识（ref)的tag都会被收集到react的refs里
+  - &nbsp: non-breaking space
+  - 类似于html的id，迅速找到一个reference，可以调取它的内部值，或者干其他事情
+  - ref收集的不是虚拟dom，而是由虚拟DOM转化成的真实DOM
+  - 官方已经不推荐使用
+  
+- 028 回调形式的ref
+  - 回调函数的三特点
+    - 你定义了函数
+    - 你没有调用函数
+    - 别人调用的函数
+  - 在ref里写一个回调函数，然后react去调用，参数就是这个ref所在的节点
+  - React只调用名为ref的函数，你写个名为haha的函数，react是不会调用的
+- 029 回调ref中调用次数的问题
+  - 内连的回调和内绑定回调的区别
+- 030 createRef
+  - 这是一人一份的，如果写2次就会overwrite
+- 031 总结Ref
+  - 不要过渡使用Ref
+- 032 React中的时间处理
+  - 不要过渡的使用Ref
+  - 可以避免的情况
+    - 发生事件的元素也是操作时间的元素时，可以使用event.target
