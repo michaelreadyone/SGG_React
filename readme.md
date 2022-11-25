@@ -34,6 +34,9 @@
     - React核心，用户通过它操作React虚拟DOM
   - React-dom.development.js
     - React扩展库，React通过这个去操作正式DOM
+  - 在引入的过程里要把react-dom.development.js放在react.development.js前面
+  - 问题：
+    - React 脚手架是什么？
 - 003 为什么要用 jsx创建虚拟dom 而不是 js：
   - 是为了解决原始 js 创建虚拟 dom 的繁琐，相当于 jsx 是 js 的语法糖
   - Babel 把 jsx 翻译成了 js
