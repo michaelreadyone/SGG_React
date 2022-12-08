@@ -50,10 +50,15 @@
   - 虚拟 DOM 最终会被 React 转化为真实 DOM，呈现在页面上
 - 005 React jsx 语法规则
   - jsx： javascript xml
+
   1.定义虚拟DOM时，不要写引号。
   2.标签中混入JS表达式时要用{}。
   3.样式的类名指定不要用class，要用className。
   4.内联样式，要用style={{key:value}}的形式去写。
+    - 外面的大括号表示里面的是js表达式，不是jsx表达式，里面的打括号表示这是个js object，不是array或者function
+    - 如果出现font-size这类key的话，要改成小驼峰形式fontSize
+    - eg {{color: 'white', fontSize: '10px'}}
+
   5.只有一个根标签
   6.标签必须闭合
   7.标签首字母
@@ -82,6 +87,8 @@
   - 一般方法的speak() 为什么在函数打印里没有显示？它放在了哪里？
   - p1.speak.call() 这个call函数怎么用？
 - 011 类式组件
+  - Questions
+    - 谁调用了render（）？方法是供实例调用，但是这个类组件并没有创建实例
 - 012 对state的理解
   - 是React制作组提前写好的一个React.Component的属性
 - 013 初始化state
