@@ -21,13 +21,13 @@
 
 			//构造字面量对象时使用展开语法
 			let person = {name:'tom',age:18}
-			let person2 = {...person}
+			let person2 = {...person} //深度复制   
 			//console.log(...person); //报错，展开运算符不能展开对象
 			person.name = 'jerry'
 			console.log(person2);
 			console.log(person);
 
-			//合并
+			//合并， 后面的属性会覆盖前面同名的属性，不管是单个的key-value还是...Object的形式
 			let person3 = {...person,name:'jack',address:"地球"}
 			console.log(person3);
 			
