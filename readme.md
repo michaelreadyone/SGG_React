@@ -93,10 +93,16 @@
   - 是React制作组提前写好的一个React.Component的属性
 - 013 初始化state
   - 在类组件中使用constructor
+  - 借助构造器初始化状态
 - 014 React中的事件绑定
   - 原始js中的事件绑定
 - 015 类方法中的this
-  - 注意原型，弄清楚一般方程是附在类的原型上
+  - 注意原型，弄清楚一般function是附在类的原型上
+  - 那为什么render 和 constructor里的this是实例对象，而changeWeather的this不是呢？
+    - 构造器一定是这样
+    - render是React给这个组建新建了实例，然后调用了render，所以render的this是实例对象
+    - changeWeather的方法首先是写在原型上，但是它不是实例调用，所以this指向的是局部，
+    - 而类中所有定义的方法都在局部开启了严格模式 "use strict"，所以this不能指向window，所以是undefined
 - 016 解决类中this指向问题
   - [bind()的用法](<https://www.runoob.com/w3cnote/js-call-apply-bind.html>)
   - call, apply, bind 都可以用来改变this的指向。
@@ -113,6 +119,7 @@
 - 018 state 的简写方式
   - 怎么在不写constructor的情况下，追加新的变量呢？
 - 019 总结state
+  - 箭头函数没有自己的this，它找外层函数的this作为自己的this
   - stated 的值是对象（k:v)的组合
   - 组件通过state的改变来重新渲染，render页面
   - 组件render()中的this是组件示例对象

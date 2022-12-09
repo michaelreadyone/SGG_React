@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>state</title>
+  </head>
+  <body>
+    <!-- 准备好一个“容器” -->
+    <div id="test"></div>
+
+    <!-- 引入react核心库 -->
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <!-- 引入react-dom，用于支持react操作DOM -->
+    <script
+      type="text/javascript"
+      src="../js/react-dom.development.js"
+    ></script>
+    <!-- 引入babel，用于将jsx转为js -->
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+
+    <script type="text/babel">
+      class Weather extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = { isHot: false };
+          this.changeWeather = this.changeWeather.bind(this); //bind改了括号里的this，从undefined改成了实例的this，再把这个function赋值给左边的this.changeWeather
+        }
+
+        render() {
+          const { isHot } = this.state; //render里的this是组件实例对象
+          return (
+            <h1 onClick={this.changeWeather}>Weather is {isHot ? "hot" : "cool"}</h1>
+          );
+        }
+        changeWeather() {
+          console.log(this);
+        }
+      }
+
+      ReactDOM.render(<Weather />, document.getElementById("test"));
+    </script>
+  </body>
+</html>
+
+<!-- 
+	自定义function demo里的this无法access到实例的this，怎么办？
+
+	办法尝试1：
+		在class和function外部let一个全局变量叫 that， 然后在constructor里 that=this， 然后就可以在
+		function里用that了。
+		问题：结构不规范，不应该在class和渲染组件外写代码。应该想办法把这个function挪到class内部
+  办法2:
+    挪到class里，class里方法不能随便写，首先删除function 关键词, 
+    render里不能直接回调changeWeather，前面要加this
+    但是此时changeWeather不是实例的方法，是原型的方法，所以实例还是找不到，所以changWeather里的this还是undefined。
+    所以要加上this.changeWeather = this.changeWeather.bind(this);
+-->

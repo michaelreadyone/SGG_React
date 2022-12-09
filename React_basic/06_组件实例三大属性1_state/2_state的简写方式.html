@@ -26,7 +26,8 @@
 				return <h1 onClick={this.changeWeather}>今天天气很{isHot ? '炎热' : '凉爽'}，{wind}</h1>
 			}
 
-			//自定义方法————要用赋值语句的形式+箭头函数
+			//自定义方法————要用赋值语句的形式+箭头函数，
+			//一般函数是把这个function放在实例上，但是这个是回调函数，并不是实例调用，所以不行。而箭头函数自己没有this，它会去寻找外层的this，而这个this就是实例的this。
 			changeWeather = ()=>{
 				const isHot = this.state.isHot
 				this.setState({isHot:!isHot})
