@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>3_回调ref中回调执行次数的问题</title>
+  </head>
+  <body>
+    <!-- 准备好一个“容器” -->
+    <div id="test"></div>
+
+    <!-- 引入react核心库 -->
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <!-- 引入react-dom，用于支持react操作DOM -->
+    <script
+      type="text/javascript"
+      src="../js/react-dom.development.js"
+    ></script>
+    <!-- 引入babel，用于将jsx转为js -->
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+
+    <script type="text/babel">
+      //创建组件
+      class Demo extends React.Component {
+        state = { isHot: true };
+
+        showInfo = () => {
+          // string ref
+          //   const { input } = this.refs;
+          //   alert(input.value);
+
+          // callback ref
+          const { input2 } = this;
+          alert(input2.value);
+        };
+
+        changeWeather = () => {
+          const { isHot } = this.state;
+          this.setState({ isHot: !isHot });
+        };
+
+        render() {
+          const { isHot } = this.state;
+          return (
+            <div>
+              <h2>Today is {isHot ? "Hot" : "Cool"}</h2>
+              <input
+                ref={(c) => {
+                  this.input2 = c;
+                  console.log(c);
+                }}
+                type="text"
+              />
+              <br />
+              <br />
+              <button onClick={this.showInfo}>show input value</button>&nbsp;
+              <button onClick={this.changeWeather}>change weather</button>
+            </div>
+          );
+        }
+      }
+
+      ReactDOM.render(<Demo />, document.getElementById("test"));
+    </script>
+  </body>
+</html>

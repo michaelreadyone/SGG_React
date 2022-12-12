@@ -145,9 +145,12 @@
 - 024 类式组件中的构造器与props
   - 构造器中的props传给和不传给super()有什么区别吗？
   - 类中的构造器到底有什么作用呢？
+  - 构造器可以省略，但是，
   - 如果需要写构造器，那么就要一定接和传props
 - 025 函数组件使用props
   - 类式组件的state和refs不能用在function组件里，但是props可以
+  - 因为函数可以接收参数
+  - 也可以限制参数，但是不能用static的方法，而是用class 外部的方法
 - 026 props总结 明天看
 - 027 字符串形式的ref
   - 打标识（ref)的tag都会被收集到react的refs里
@@ -161,14 +164,26 @@
     - 你定义了函数
     - 你没有调用函数
     - 别人调用的函数
+  - 回调函数，一般就是谁调用，参数就和谁有关，所以这里的参数和调用它的<>有关。
   - 在ref里写一个回调函数，然后react去调用，参数就是这个ref所在的节点
+  - 这里ref的不是this.refs,而是任意的this.XXX, (比如input1，但是不能和其他关键词重复，比如props，state)
   - React只调用名为ref的函数，你写个名为haha的函数，react是不会调用的
+  - 在html里写ref是出错的，是React在中起了作用
 - 029 回调ref中调用次数的问题
   - 内连的回调和内绑定回调的区别
+  - 在组件更新的时候，内联会调用2次，第一次传参数null
+  - 什么是内联函数？
+    - 直接写在标签里，ref={}里的函数
+  - 在状态更新时React再次调用render()，而内联的ref函数再次被触发，但是因为他是内联匿名，所以函数不知道上次调用了什么，为了保证这次运行的正确性，ref会先把null当成参数传进来，然后再把当前节点传进来。类似于一个清空的动作
+  - 把内联函数换成class的绑定函数就可以解决这个问题，那么什么是class绑定函数呢？
+    - 就是不写匿名函数，把函数写在外面，然后用`ref={this.saveInput}`引用进来
 - 030 createRef
+  - 当React发现ref标签`<input ref={this.myRef} />`，并且又使用了createRef API`myRef = React.createRef()`，那么React会把这个节点挂在this上，也就是是说，`this.myRef.current`就是这个节点
   - 这是一人一份的，如果写2次就会overwrite
 - 031 总结Ref
-  - 不要过渡使用Ref
+  - 不要过渡使用String Ref
+  - 可以使用内联方式
+  - React最推荐createRef
 - 032 React中的事件处理
   - 不要过渡的使用Ref
   - 可以避免的情况
