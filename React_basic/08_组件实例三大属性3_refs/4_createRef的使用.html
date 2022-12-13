@@ -31,12 +31,16 @@
 			showData2 = ()=>{
 				alert(this.myRef2.current.value);
 			}
+
+			handleBlur = (e) => {
+				console.log(e.target.value)
+			}
 			render(){
 				return(
 					<div>
 						<input ref={this.myRef} type="text" placeholder="点击按钮提示数据"/>&nbsp;
 						<button onClick={this.showData}>点我提示左侧的数据</button>&nbsp;
-						<input onBlur={this.showData2} ref={this.myRef2} type="text" placeholder="失去焦点提示数据"/>&nbsp;
+						<input onBlur={ this.handleBlur} type="text" placeholder="失去焦点提示数据"/>&nbsp;
 					</div>
 				)
 			}
